@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>GroXoType = GXT + Prototype</title>
+	<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+	.affix{position:fixed;top:30px;}
+	.affix-bottom{position:absolute;}
+	
+	.bs-callout {
+		padding: 5px 10px;
+		margin: 10px 0;
+		border: 1px solid #eee;
+		border-left-width: 5px;
+		border-radius: 3px;
+	}
+	
+	.bs-callout-danger {
+		border-left-color: #d9534f;
+	}
+	
+	.bs-callout-warning {
+		border-left-color: #f0ad4e;
+	}
+	
+	.bs-callout-info {
+		border-left-color: #5bc0de;
+	}
+	
+	.sidebar-menu .nav>.active>a, 
+	.sidebar-menu .nav>.active:hover>a,
+	.sidebar-menu .nav>.active:focus>a {
+		padding-left: 18px;
+		font-weight: 700;
+		color: #563d7c;
+		border-left:2px solid #563d7c;
+	}
+	
+	.sidebar-menu .nav .nav>.active>a, 
+	.sidebar-menu .nav .nav>.active:hover>a,
+	.sidebar-menu .nav .nav>.active:focus>a {
+		padding-left: 28px;
+		font-weight: 500;
+	}
+	
+	.sidebar-menu .nav>li>a {
+		display:block;
+		padding: 4px 20px;
+		font-size: 13px;
+		font-weight: 500;
+		color: #999;
+	}
+	
+	.sidebar-menu .nav .nav>li>a {
+		padding-top: 1px;
+		padding-bottom: 1px;
+		padding-left: 30px;
+		font-size: 12px;
+		font-weight: 400;
+	}
+	
+	.sidebar-menu .nav>.active>a {
+		color: #563d7c;
+		border-left:2px solid #563d7c;
+	}
+	</style>
+</head>
+
+<body data-spy="scroll" data-target=".sidebar-menu">
+
+<header class="navbar navbar-inverse navbar-static-top" role="banner" style="margin-bottom:0">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">GroXoType</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<form class="navbar-form navbar-right"><!-- 現在是靠這個才讓 margin 正確，算了算了，不想研究 Bootstrap  Orz -->
+				<a class="btn btn-success" href="https://github.com/MontyPan/GroXoType" role="button">Fork me on GitHub</a>			
+			</form>
+		</div>
+	</div>
+</header>
+
+<header class="jumbotron">
+	<div class="container">
+		<h2>GXT + Prototype</h2>
+		<p>
+			Visualize your prototyping quickly and make you more productive.
+		</p>
+		<p>
+			<a class="btn btn-primary btn-lg" href="demo.html" role="button">Try It Now !</a>
+		</p>
+	</div>
+</header>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9" role="main">
+			<section id="section1">
+				<h2>What is GroXoType?</h2>
+				GroXoType is a GXT prototyping webapp based on GXT.
+				It is a WYSIWYG editor in which users can design layout without writing codes 
+				and see the UI without waiting for compilation.
+				Furthermore, GroXoType generates equivalent ui.xml code in most situations.
+				
+				<div class="bs-callout bs-callout-info">
+					<h4>Info</h4>
+					GroXoType does not provide a DnD editor, user must know meaning of parameters of GXT layout containers
+					such like <code>HorizontalLayoutData</code>.
+				</div>
+			</section>
+			
+			<section id="section2">
+				<h2>How to use?</h2>
+				<ul>
+					<li>
+						Add the GroXoType source code to the project build path.
+						<div class="bs-callout bs-callout-danger">
+							<h4>Notice</h4>
+							Sorry, GroXoType does not support maven repo yet.
+							You need to set the source code / build path on your hand. :(
+						</div>
+					</li>
+					<li>
+						Insert the GroXoType module into your project gwt.xml.
+						<pre>&lt;inherits name="montyPan.groxotype.GroXoType" /&gt;	</pre>
+					</li>
+					<li>
+						Write the <code>EntryPoint</code> class:
+						<pre>
+	@Override
+	public void onModuleLoad() {
+		ProviderUtil.addAll();
+				
+		Viewport vp = new Viewport();
+		vp.add(new AddButton(vp));
+		RootPanel.get().add(vp);
+	}						</pre>
+						</li>
+						<li>
+							Browse the host page, you will find a button filled hole browser.
+							Click it and choose which component you want to add.
+						</li>
+						<li>
+							When you finish layout process, right click and bring a context menu.
+							Then click the "Generator" button, you will get the ui.xml code.
+						</li>
+					</ul>
+					
+					<div class="bs-callout bs-callout-warning">
+						<h4>Notice</h4>
+						If you want to use the code generator function,
+						only one <code>AddButton</code> can be used in initial layout.
+					</div>
+					<div class="bs-callout bs-callout-info">
+						<h4>Info</h4>
+						<code>AddButton</code> is a normal GXT component.
+						You can add it on any container in your exist project. :)
+					</div>
+				</p>
+			</section>
+			
+			<section id="section3">
+				<h2>GXT component provider list</h2>
+				
+				<h3 id="section3-1">Container</h3>
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<th class="col-md-3">Name</th>
+						<th class="col-md-1">Provider</th>
+						<th class="col-md-1">Generator</th>
+						<th class="col-md-6"></th>
+					</tr>
+					<tr>
+						<td>AccordionLayoutContainer</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>BorderLayoutContainer</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>BoxLayoutContainer</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>ButtonBar</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>ButtonGroup</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CardLayoutContainer</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CenterLayoutContainer</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>ContentPanel</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>FieldLabel</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>FieldSet</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>FramedPanel</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+						<td>In <code>ContentPanelProvider</code></td>
+					</tr>
+					<tr>
+						<td>HBoxLayoutContainer</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>HorizontalLayoutContainer</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>NorthSouthContainer</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>PagingToolBar</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>ToolBar</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>VBoxLayoutContainer</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>VerticalLayoutContainer</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+				</table>
+				GroXoType will not support:
+				<ul>
+					<li>FromPanel, SimpleContainer, Viewport</li>
+					<li>CssFloatLayoutContainer, FlowLayoutContainer, HtmlLayoutContainer</li>
+					<li>Dialog, MessageBox family, Popup, Window</li>
+					<li>PortalLayoutContainer, Portlet</li>
+				</ul>
+				
+				<h3 id="section3-2">Component</h3>
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<th class="col-md-3">Name</th>
+						<th class="col-md-1">Provider</th>
+						<th class="col-md-1">Generator</th>
+						<th class="col-md-5"></th>
+					</tr>
+					<tr>
+						<td>BigDecimalField</td>
+						<td></td>
+						<td></td>
+						<td>In <code>NumberFieldProvider</code></td>
+					</tr>
+					<tr>
+						<td>BigIntegerField</td>
+						<td></td>
+						<td></td>
+						<td>In <code>NumberFieldProvider</code></td>
+					</tr>
+					<tr class="success">
+						<td>CheckBox</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr class="info">
+						<td>ComboBox</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td>Will generate a <code>StringComboBox</code></td>
+					</tr>
+					<tr>
+						<td>DateField</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>DoubleField</td>
+						<td></td>
+						<td></td>
+						<td>In <code>NumberFieldProvider</code></td>
+					</tr>
+					<tr>
+						<td>FillToolItem</td>
+						<td></td>
+						<td></td>
+						<td></code></td>
+					</tr>
+					<tr>
+						<td>FloatField</td>
+						<td></td>
+						<td></td>
+						<td>In <code>NumberFieldProvider</code></td>
+					</tr>
+					<tr class="warning">
+						<td>Grid</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td>Can't use generated code directly, need to write Java code.</td>
+					</tr>
+					<tr>
+						<td>IntegerField</td>
+						<td></td>
+						<td></td>
+						<td>In <code>NumberFieldProvider</code></td>
+					</tr>
+					<tr>
+						<td>LabelToolItem</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>LongField</td>
+						<td></td>
+						<td></td>
+						<td>In <code>NumberFieldProvider</code></td>
+					</tr>
+					<tr>
+						<td>PasswordField</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>PlainTabPanel</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td>In <code>TabPanelProvider</code></td>
+					</tr>
+					<tr class="success">
+						<td>Radio</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td>In <code>CheckBoxProvider</code></td>
+					</tr>
+					<tr>
+						<td>ShortField</td>
+						<td></td>
+						<td></td>
+						<td>In <code>NumberFieldProvider</code></td>
+					</tr>
+					<tr class="info">
+						<td>SimpleComboBox</td>
+						<td></td>
+						<td></td>
+						<td>Substituted by <code>ComboBox</code></td>
+					</tr>
+					<tr class="info">
+						<td>StringComboBox</td>
+						<td></td>
+						<td></td>
+						<td>Substituted by <code>ComboBox</code></td>
+					</tr>
+					<tr class="success">
+						<td>TabPanel</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>TextArea</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>TextField</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr class="success">
+						<td>TextButton</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TimeField</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="warning">
+						<td>Tree</td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td>Can't use generated code directly, need to write Java code.</td>
+					</tr>
+					<tr>
+						<td>TreeGrid</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				GroXoType will not support:
+				<ul>
+					<li>AutoProgressBar, ProgressBar</li>
+					<li>Info, Tip, Tooltip, QuickTip</li>
+					<li>DrawComponent</li>
+					<li>CollapsePanel, FileUploadField, ListView</li>
+				</ul>
+			</section>
+			
+			<section id="section4">
+				<h2>Write Provider</h2>
+				If you has a customize widget which name is <code>Foo</code>,
+				want <code>Foo</code> can be used in GroXoType.
+				All you need to do is write a <code>ComponentProvider</code>
+				<h3 id="section4-1">Basic Concept</h3>
+				<ul>
+					<li>
+						Create a class, <code>FooProvider</code> in this case, extends <code>ComponentProvider</code>
+					</li>
+					<li>
+						Implement these methods:
+						<ul>
+							<li>
+								<code>getCategory()</code>: The category of <code>Foo</code>.
+							</li>
+							<li>
+								<code>buttonText()</code>: The name of <code>Foo</code>.
+							</li>
+							<li>
+								<code>genComponent()</code>: This method will return an actual <code>Foo</code> instance.
+							</li>
+						</ul>
+					</li>
+					<li>
+						If you need parameters when <code>genComponent()</code> is invoked, 
+						override <code>genSettingView()</code> and make it to return a setting widget.
+					</li>
+				</ul>
+				Before <code>AddButton</code> initialized, make sure <code>ComponentSelector.addProvider()</code> was invoked like this:
+				<pre>ComponentSelector.addProvider(new FooProvider());</pre>
+				
+				<h3 id="section4-2">Code Generator</h3>
+				<div class="bs-callout bs-callout-danger">
+					<h4>Notice</h4>
+					GroXoType can't generate code of all kind of widgets without rewrite core of GroXoType's generator.
+					If you follow these guildlines but still can't generate correct code (like <code>TabPanel</code>), don't be sad.
+					Because it could be the limitation of GroXoType, not your fault.
+					I am still finding better generate alogrithm  :'(
+				</div>
+				<p>
+					If <code>Foo</code> has some attributes that will apear in ui.xml,
+					you need to override <code>genAttrMap()</code> in <code>FooProvider</code>.
+					The return value of <code>genAttrMap()</code> is a <code>HashMap&lt;String, Object&gt;</code>,
+					make sure the <code>toString()</code> behavior of the value you put in <code>HashMap</code> is expected.
+					Generator will call <code>toString()</code> to generate ui.xml code.
+				</p>
+				<p>
+					If <code>Foo</code> has child widget wrapped in pseudo-element, <code>&lt;f:widget&gt;</code> of <code>FieldLabel</code> for example,
+					you need to override <code>genContext()</code>.
+					The return value of <code>genContext()</code> is a <code>ArrayList&lt;String&gt;</code>, 
+					each element is a line of code will be generated.
+					Use the constant <code>GenUtil.CHILD</code> in string to represent child widget,
+					generator will replace <code>GenUtil.CHILD</code> to real code of child widget.
+				</p>
+			</section>
+		</div>
+
+		<nav class="col-md-3 sidebar-menu">
+			<ul id="menu" class="nav">
+				<li><a href="#section1">What is GroXoType?</a></li>
+				<li><a href="#section2">How to Use?</a></li>
+				<li>
+					<a href="#section3">GXT Widget Support</a>
+					<ul class="nav">
+						<li><a href="#section3-1">Container</a></li>
+						<li><a href="#section3-2">Component</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#section4">Write Provider</a>
+					<ul class="nav">
+						<li><a href="#section4-1">Basic Concept</a></li>
+						<li><a href="#section4-2">Code Generator</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div> <!-- /container -->
+
+<footer id="footer">
+</footer>
+
+<script src="dist/js/jquery-1.11.2.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script>
+$('#menu').affix({
+	offset: {
+		top: 400,
+		bottom: function() {
+			return (this.bottom = $('#footer').outerHeight(true))
+		}
+	}
+});
+</script>
+</body>
+</html>
