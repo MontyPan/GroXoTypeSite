@@ -88,7 +88,7 @@
 	<div class="container">
 		<h2>GXT + Prototype</h2>
 		<p>
-			Visualize your prototyping quickly and make you more productive.
+			Visualize your prototyping immediately and make you more productive.
 		</p>
 		<p>
 			<a class="btn btn-primary btn-lg" href="GroXoType.html" role="button">Try It Now !</a>
@@ -102,14 +102,14 @@
 			<section id="section1">
 				<h2>What is GroXoType?</h2>
 				GroXoType is a GXT prototyping webapp based on GXT.
-				It is a WYSIWYG editor in which users can design layout without writing codes 
+				It is a WYSIWYG editor in which users can design your layout without writing codes 
 				and see the UI without waiting for compilation.
 				Furthermore, GroXoType generates equivalent ui.xml code in most situations.
 				
 				<div class="bs-callout bs-callout-info">
-					<h4>Info</h4>
-					GroXoType does not provide a DnD editor, user must know meaning of parameters of GXT layout containers
-					such like <code>HorizontalLayoutData</code>.
+					<h4>Tips</h4>
+					GroXoType does not provide DnD feature. 
+					Users must understand the meaning of GXT LayoutData's parameters, such as <code>HorizontalLayoutData</code>.
 				</div>
 			</section>
 			
@@ -117,15 +117,16 @@
 				<h2>How to use?</h2>
 				<ul>
 					<li>
-						Add the GroXoType source code to the project build path.
+						Add the GroXoType source code to the project Build Path.
 						<div class="bs-callout bs-callout-danger">
 							<h4>Notice</h4>
-							Sorry, GroXoType does not support maven repo yet.
-							You need to set the source code / build path on your hand. :(
+							GroXoType does not support maven repo at this stage.
+							Users will need to set the source code / build path by themselves.
+							<img width="21" height="21" src="http://www.emoji-cheat-sheet.com/graphics/emojis/broken_heart.png" />
 						</div>
 					</li>
 					<li>
-						Insert the GroXoType module into your project gwt.xml.
+						Insert the GroXoType module into the project's <code>gwt.xml</code>.
 						<pre>&lt;inherits name="montyPan.groxotype.GroXoType" /&gt;	</pre>
 					</li>
 					<li>
@@ -141,24 +142,24 @@
 	}						</pre>
 						</li>
 						<li>
-							Browse the host page, you will find a button filled hole browser.
+							Browse the host page, users will find the window filled with one single button.
 							Click it and choose which component you want to add.
 						</li>
 						<li>
-							When you finish layout process, right click and bring a context menu.
-							Then click the "Generator" button, you will get the ui.xml code.
+							When the prototyping is completed, right click and a context menu will appear.
+							Click the "Generator" button, and you will get the ui.xml code.
 						</li>
 					</ul>
 					
 					<div class="bs-callout bs-callout-warning">
 						<h4>Notice</h4>
-						If you want to use the code generator function,
-						only one <code>AddButton</code> can be used in initial layout.
+						If users intend to use the code generator function,
+						only one <code>AddButton</code> can be added on initial layout.
 					</div>
 					<div class="bs-callout bs-callout-info">
-						<h4>Info</h4>
-						<code>AddButton</code> is a normal GXT component.
-						You can add it on any container in your exist project. :)
+						<h4>Tips</h4>
+						<code>AddButton</code> is a normal GXT component without any restriction.
+						You can add it on any container in your existing project. :)
 					</div>
 				</p>
 			</section>
@@ -172,7 +173,7 @@
 						<th class="col-md-3">Name</th>
 						<th class="col-md-1">Provider</th>
 						<th class="col-md-1">Generator</th>
-						<th class="col-md-6"></th>
+						<th class="col-md-6">Note</th>
 					</tr>
 					<tr>
 						<td>AccordionLayoutContainer</td>
@@ -183,7 +184,7 @@
 					<tr class="success">
 						<td>BorderLayoutContainer</td>
 						<td><span class="glyphicon glyphicon-ok" /></td>
-						<td><span class="glyphicon glyphicon-ok" /></td>
+						<td></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -231,7 +232,7 @@
 					<tr class="success">
 						<td>FieldSet</td>
 						<td><span class="glyphicon glyphicon-ok" /></td>
-						<td></td>
+						<td><span class="glyphicon glyphicon-ok" /></td>
 						<td></td>
 					</tr>
 					<tr class="success">
@@ -283,7 +284,7 @@
 						<td></td>
 					</tr>
 				</table>
-				GroXoType will not support:
+				GroXoType does not support:
 				<ul>
 					<li>FromPanel, SimpleContainer, Viewport</li>
 					<li>CssFloatLayoutContainer, FlowLayoutContainer, HtmlLayoutContainer</li>
@@ -297,7 +298,7 @@
 						<th class="col-md-3">Name</th>
 						<th class="col-md-1">Provider</th>
 						<th class="col-md-1">Generator</th>
-						<th class="col-md-5"></th>
+						<th class="col-md-5">Note</th>
 					</tr>
 					<tr>
 						<td>BigDecimalField</td>
@@ -351,7 +352,7 @@
 						<td>Grid</td>
 						<td><span class="glyphicon glyphicon-ok" /></td>
 						<td><span class="glyphicon glyphicon-ok" /></td>
-						<td>Can't use generated code directly, need to write Java code.</td>
+						<td>Cannot use generated code directly. Java code needed.</td>
 					</tr>
 					<tr>
 						<td>IntegerField</td>
@@ -441,7 +442,7 @@
 						<td>Tree</td>
 						<td><span class="glyphicon glyphicon-ok" /></td>
 						<td><span class="glyphicon glyphicon-ok" /></td>
-						<td>Can't use generated code directly, need to write Java code.</td>
+						<td>Cannot use generated code directly. Java code needed.</td>
 					</tr>
 					<tr>
 						<td>TreeGrid</td>
@@ -450,7 +451,7 @@
 						<td></td>
 					</tr>
 				</table>
-				GroXoType will not support:
+				GroXoType does not support:
 				<ul>
 					<li>AutoProgressBar, ProgressBar</li>
 					<li>Info, Tip, Tooltip, QuickTip</li>
@@ -461,13 +462,13 @@
 			
 			<section id="section4">
 				<h2>Write Provider</h2>
-				If you has a customize widget which name is <code>Foo</code>,
-				want <code>Foo</code> can be used in GroXoType.
+				If you have a customize widget named <code>Foo</code>,
+				and you want it to be used in GroXoType.
 				All you need to do is write a <code>ComponentProvider</code>
 				<h3 id="section4-1">Basic Concept</h3>
 				<ul>
 					<li>
-						Create a class, <code>FooProvider</code> in this case, extends <code>ComponentProvider</code>
+						Create a class, <code>FooProvider</code> in this case, which extends <code>ComponentProvider</code>
 					</li>
 					<li>
 						Implement these methods:
@@ -488,31 +489,32 @@
 						override <code>genSettingView()</code> and make it to return a setting widget.
 					</li>
 				</ul>
-				Before <code>AddButton</code> initialized, make sure <code>ComponentSelector.addProvider()</code> was invoked like this:
+				Before <code>AddButton</code> is initialized, make sure <code>ComponentSelector.addProvider()</code> was invoked like this:
 				<pre>ComponentSelector.addProvider(new FooProvider());</pre>
 				
 				<h3 id="section4-2">Code Generator</h3>
 				<div class="bs-callout bs-callout-danger">
 					<h4>Notice</h4>
-					GroXoType can't generate code of all kind of widgets without rewrite core of GroXoType's generator.
-					If you follow these guildlines but still can't generate correct code (like <code>TabPanel</code>), don't be sad.
-					Because it could be the limitation of GroXoType, not your fault.
-					I am still finding better generate alogrithm  :'(
+					GroXoType cannot generate code of all kind of widgets without rewriting core of GroXoType's generator.
+					If you follow these guildlines but still can't generate correct code, don't be frustrated.
+					Because it could be due to the limitation of GroXoType.
+					We are still working on better generate alogrithm.
+					<img width="21" height="21" src="http://www.emoji-cheat-sheet.com/graphics/emojis/sob.png" />
 				</div>
 				<p>
 					If <code>Foo</code> has some attributes that will apear in ui.xml,
 					you need to override <code>genAttrMap()</code> in <code>FooProvider</code>.
 					The return value of <code>genAttrMap()</code> is a <code>HashMap&lt;String, Object&gt;</code>,
 					make sure the <code>toString()</code> behavior of the value you put in <code>HashMap</code> is expected.
-					Generator will call <code>toString()</code> to generate ui.xml code.
+					GroXoType generator will call <code>toString()</code> to generate ui.xml code.
 				</p>
 				<p>
-					If <code>Foo</code> has child widget wrapped in pseudo-element, <code>&lt;f:widget&gt;</code> of <code>FieldLabel</code> for example,
-					you need to override <code>genContext()</code>.
+					If <code>Foo</code> has child widget wrapped in pseudo-element, <code>&lt;f:widget&gt;</code> of <code>FieldLabel</code> for instance,
+					you will need to override <code>genContext()</code>.
 					The return value of <code>genContext()</code> is a <code>ArrayList&lt;String&gt;</code>, 
-					each element is a line of code will be generated.
+					each element is a line of code that will be generated.
 					Use the constant <code>GenUtil.CHILD</code> in string to represent child widget,
-					generator will replace <code>GenUtil.CHILD</code> to real code of child widget.
+					generator will replace <code>GenUtil.CHILD</code> with real code of child widget.
 				</p>
 			</section>
 		</div>
